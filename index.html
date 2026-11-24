@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Johanns Satheesh</title>
+<meta name="description" content="Johanns Satheesh: maths student building and testing AI tools. First-year BSc Mathematics with Computing, Queen Mary University of London.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf7; --band: #f1f0ec; --card: #ffffff; --text: #17181a; --body: #3d3f44;
+    --muted: #6b6e75; --line: #e2e1dc; --accent: #c13a21; --accent-ink: #ffffff;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131416; --band: #1a1b1e; --card: #18191c; --text: #f0efea; --body: #c9c8c2;
+      --muted: #8d8f95; --line: #2c2d31; --accent: #e8664c; --accent-ink: #131416;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131416; --band: #1a1b1e; --card: #18191c; --text: #f0efea; --body: #c9c8c2;
+    --muted: #8d8f95; --line: #2c2d31; --accent: #e8664c; --accent-ink: #131416;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body { margin: 0; background: var(--bg); color: var(--body); font: 16px/1.65 var(--sans); }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+
+  /* Top bar */
+  .top { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; }
+  .brand { color: var(--text); font-weight: 500; text-decoration: none; white-space: nowrap; }
+  .brand span { color: var(--muted); }
+  .top nav { display: flex; gap: 24px; }
+  .top nav a { color: var(--muted); text-decoration: none; }
+  .top nav a:hover { color: var(--text); }
+  .toggle { background: none; border: 1px solid var(--line); border-radius: 6px; color: var(--muted);
+            width: 32px; height: 32px; cursor: pointer; font-size: 15px; line-height: 1; }
+
+  /* Hero */
+  .hero { padding-top: 120px; padding-bottom: 72px; }
+  .eyebrow { color: var(--muted); margin: 0 0 16px; }
+  h1 { font-family: var(--serif); font-weight: 600; color: var(--text); font-size: clamp(48px, 9vw, 84px);
+       line-height: 1.02; letter-spacing: -.03em; margin: 0; }
+  .rule { width: 88px; height: 2px; background: var(--accent); margin: 24px 0 28px; }
+  .lead { font-size: 20px; line-height: 1.55; max-width: 600px; margin: 0 0 32px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 16px 32px; }
+  .ctas a { color: var(--text); font-weight: 500; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+
+  .band { background: var(--band); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .band .wrap { display: flex; flex-wrap: wrap; gap: 8px 36px; padding-top: 16px; padding-bottom: 16px; color: var(--muted); }
+
+  /* Sections */
+  section.block { padding: 96px 0; border-bottom: 1px solid var(--line); }
+  .grid { display: grid; grid-template-columns: 168px 1fr; gap: 0 24px; }
+  .label { color: var(--muted); padding-top: 12px; }
+  .label b { color: var(--accent); font-weight: 500; margin-right: 8px; }
+  h2 { font-family: var(--serif); font-weight: 600; color: var(--text); font-size: 36px; letter-spacing: -.015em; line-height: 1.15; margin: 0 0 8px; }
+  .sub { font-size: 18px; color: var(--muted); margin: 0 0 40px; }
+  h3 { font-family: var(--serif); font-weight: 600; color: var(--text); font-size: 24px; letter-spacing: -.01em; line-height: 1.2; margin: 0; }
+  p { margin: 0 0 16px; }
+
+  .two { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; }
+  .kv { border-top: 1px solid var(--line); margin: 0; }
+  .kv div { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .kv dt { color: var(--muted); padding-top: 2px; }
+  .kv dd { margin: 0; color: var(--text); font-size: 15px; }
+  .kv-title { color: var(--muted); margin: 0 0 12px; }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 32px 40px; margin-bottom: 24px; }
+  .card.feature { border-left: 2px solid var(--accent); }
+  .card-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 16px; margin-bottom: 4px; }
+  .tag { color: var(--accent); }
+  .role { color: var(--muted); margin: 0 0 20px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 28px; padding: 0; list-style: none; }
+  .chips li { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); background: var(--band); border-radius: 4px; padding: 3px 9px; color: var(--body); }
+  .hl { list-style: none; margin: 12px 0 0; padding: 0; border-top: 1px solid var(--line); counter-reset: hl; }
+  .hl li { display: grid; grid-template-columns: 40px 1fr; padding: 16px 0; border-bottom: 1px solid var(--line); counter-increment: hl; font-size: 15px; }
+  .hl li::before { content: counter(hl, decimal-leading-zero); font-family: var(--mono); font-size: 12px; color: var(--accent); padding-top: 3px; }
+  .hl li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .links-row { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 24px; }
+  .links-row a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent); }
+
+  .rows { border-top: 1px solid var(--line); }
+  .row { display: grid; grid-template-columns: 1fr auto; gap: 4px 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+  .row .when { color: var(--muted); padding-top: 6px; white-space: nowrap; }
+  .row .role { margin: 4px 0 12px; }
+  .row ul { margin: 0; padding-left: 18px; font-size: 15px; }
+  .row li { margin-bottom: 6px; }
+  .row p { font-size: 15px; margin: 0; }
+  .row > div:first-child { grid-column: 1; }
+
+  .contact { padding: 48px; }
+  .contact .lead { margin-bottom: 28px; }
+  .btn { display: inline-block; background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 600; font-size: 15px; padding: 12px 20px; border-radius: 4px; }
+  .contact .meta { display: flex; flex-wrap: wrap; gap: 8px 28px; border-top: 1px solid var(--line); margin-top: 32px; padding-top: 20px; color: var(--muted); }
+  .contact .meta a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent); }
+
+  footer { padding: 32px 0 48px; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  footer a { text-decoration: none; border-bottom: 1px solid var(--line); margin-left: 20px; }
+
+  @media (max-width: 760px) {
+    .top nav { display: none; }
+    .hero { padding-top: 72px; padding-bottom: 56px; }
+    .brand span { display: none; }
+    .lead { font-size: 18px; }
+    section.block { padding: 64px 0; }
+    .grid { grid-template-columns: 1fr; }
+    .label { padding: 0 0 12px; }
+    h2 { font-size: 30px; }
+    .two { grid-template-columns: 1fr; gap: 32px; }
+    .kv div { grid-template-columns: 96px 1fr; }
+    .card { padding: 24px 20px; }
+    .contact { padding: 28px 20px; }
+    .row { grid-template-columns: 1fr; }
+    .row .when { grid-row: 1; padding-top: 0; }
+    footer a { margin: 0 20px 0 0; }
+  }
+  .theme { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--text);
+           margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: inline-block; }
+  .theme:first-of-type { margin-top: 0; }
+  .ctas .ghost { border-bottom-color: var(--line); }
+  .ctas .ghost:hover { border-bottom-color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand mono" href="#">Johanns Satheesh <span>· Maths with Computing</span></a>
+    <nav class="mono">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="toggle" id="toggle" type="button" aria-label="Switch light or dark theme">☾</button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <p class="eyebrow mono">BSc Mathematics with Computing · Queen Mary University of London</p>
+    <h1>Johanns Satheesh</h1>
+    <div class="rule"></div>
+    <p class="lead">Maths student building and testing AI tools. I'm currently part of a student team researching whether language models answer numeric questions on banks' risk reports worse than text ones.</p>
+    <div class="ctas">
+      <a href="#work">See the work ↓</a>
+      <a class="ghost" href="https://github.com/JohannsSatheesh">GitHub ↗</a>
+      <a class="ghost" href="https://www.linkedin.com/in/johannssatheesh/">LinkedIn ↗</a>
+      <a class="ghost" href="mailto:johannssatheeshuk@gmail.com">Email →</a>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap mono">
+      <span>Mathematics with Computing</span>
+      <span>Queen Mary University of London</span>
+      <span>London, UK</span>
+    </div>
+  </div>
+
+  <section class="block" id="work">
+    <div class="wrap grid">
+      <div class="label mono"><b>01</b>Work</div>
+      <div>
+        <h2>Selected work</h2>
+        <p class="sub">Five projects, in two themes.</p>
+
+        <p class="theme">AI and language models</p>
+
+        <article class="card feature">
+          <div class="card-head"><h3>LLM Assistant for Risk Reports</h3><span class="tag mono">Research · Nov 2026 – Present</span></div>
+          <p class="role mono">QMUL AI Society Research Lab · In progress</p>
+          <p>Selected for a 3-student team researching whether LLMs answer numeric questions on banks' risk reports worse than text ones, and whether a tool computing figures from extracted tables reduces hallucination.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><h3>Bigram Language Model</h3><span class="tag mono">University project · Oct – Nov 2026</span></div>
+          <p class="role mono">Queen Mary University of London</p>
+          <p>A bigram language model built on a finance corpus, analysed with conditional probability.</p>
+          <p class="kv-title mono">Highlights</p>
+          <ol class="hl">
+            <li><span>Designed the model, derived its transition matrix via conditional probability and analysed unseen word pairs; scored 98%.</span></li>
+            <li><span>Extended it with Laplace smoothing, proving smoothed rows sum to 1 and tend to uniform as smoothing grows; compared word uncertainty using entropy and perplexity.</span></li>
+          </ol>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><h3>Hear2Use</h3><span class="tag mono">Hackathon · Oct 2026</span></div>
+          <p class="role mono">Team Lead · IBM Bob Design Thinking Hackathon · London</p>
+          <p>A voice-first prototype for blind and partially sighted people. I led a 6-person team to build it in 4 hours, and fronted the pitch as first of 5 teams, presenting the user problem, our Design Thinking process and a live app walkthrough.</p>
+          <p class="kv-title mono">Stack</p>
+          <ul class="chips"><li>IBM Bob</li><li>Gemini Vision</li><li>Web Speech API</li></ul>
+          <p class="kv-title mono">Highlights</p>
+          <ol class="hl">
+            <li><span>Built the 2,600-line prototype with IBM Bob, demonstrated working in a live demo.</span></li>
+            <li><span>Designed with WCAG 7:1 contrast and 64px touch targets so visually impaired users can read labels without help.</span></li>
+            <li><span>Conceived the app's name and gamified features, and co-created the pitch presentation.</span></li>
+          </ol>
+          <div class="links-row mono"><a href="https://johannssatheesh.github.io/Hear2Use/">Live demo ↗</a><a href="https://github.com/JohannsSatheesh/Hear2Use">Code ↗</a></div>
+        </article>
+
+        <p class="theme">Building and testing software</p>
+
+        <article class="card">
+          <div class="card-head"><h3>Payments Ledger</h3><span class="tag mono">Personal project · Oct 2026</span></div>
+          <p class="role mono">Personal fintech project</p>
+          <p>A Go REST API for a payments ledger, using integer-pence balances, mutex-protected transfers and idempotency keys to prevent duplicate processing.</p>
+          <p class="kv-title mono">Stack</p>
+          <ul class="chips"><li>Go</li><li>GitHub Actions</li><li>Docker</li></ul>
+          <p class="kv-title mono">Highlights</p>
+          <ol class="hl">
+            <li><span>Tested concurrent transfers with 100 goroutines to verify total-balance conservation.</span></li>
+            <li><span>Reached 100% statement coverage.</span></li>
+            <li><span>Automated race detection and Docker builds through GitHub Actions.</span></li>
+          </ol>
+          <div class="links-row mono"><a href="https://github.com/JohannsSatheesh/ledger">Code ↗</a></div>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><h3>3D Action Game</h3><span class="tag mono">A Level project · Apr 2026</span></div>
+          <p class="role mono">A Level Computer Science project</p>
+          <p>A third-person action game in Unreal Engine 5 (C++), built over 4 iterations.</p>
+          <p class="kv-title mono">Stack</p>
+          <ul class="chips"><li>C++</li><li>Unreal Engine 5</li></ul>
+          <p class="kv-title mono">Highlights</p>
+          <ol class="hl">
+            <li><span>Covered movement and stamina, a reusable combat and health component, quick-time events, and 5 real-time settings.</span></li>
+            <li><span>Documented it in a full project report with 2 stakeholder interviews and 4 test scenarios.</span></li>
+            <li><span>Scored 99% for the project.</span></li>
+          </ol>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap grid">
+      <div class="label mono"><b>02</b>Experience</div>
+      <div>
+        <h2>Experience and education</h2>
+        <p class="sub">Where I've worked and studied.</p>
+        <div class="rows">
+          <div class="row">
+            <div>
+              <h3>Vajra Global</h3>
+              <p class="role mono">Incoming Artificial Intelligence Intern · Remote</p>
+              <p>Selected for a remote internship focused on AI marketing technology and operations.</p>
+            </div>
+            <span class="when mono">Starting Nov 2026</span>
+          </div>
+          <div class="row">
+            <div>
+              <h3>Sky Group, GST Division</h3>
+              <p class="role mono">DevOps Work Experience · London</p>
+              <ul>
+                <li>Monitored Jenkins CI/CD pipeline runs for a Java backend team supporting 4 streaming services.</li>
+                <li>Observed Kubernetes auto-scaling rules that scaled services from 2 to 10 pods under load.</li>
+                <li>Documented chaos test failure points in retention and payment systems, and learned how the team applied SOLID and YAGNI in code reviews.</li>
+              </ul>
+            </div>
+            <span class="when mono">Aug 2025</span>
+          </div>
+          <div class="row">
+            <div>
+              <h3>Bright Revise Tuition</h3>
+              <p class="role mono">Co-Founder &amp; Tutor · London</p>
+              <p>Mentored 2 GCSE and AS Level students eligible for Free School Meals through 100+ hours of free tutoring, raising their grades by 3 in Mathematics and 4 in Physics.</p>
+            </div>
+            <span class="when mono">Aug 2025 – Present</span>
+          </div>
+          <div class="row">
+            <div>
+              <h3>Queen Mary University of London</h3>
+              <p class="role mono">BSc Mathematics with Computing</p>
+              <p>Self-studying A Level Further Mathematics alongside Year 1, with exams in May 2027.</p>
+            </div>
+            <span class="when mono">Sep 2026 – Jun 2029</span>
+          </div>
+          <div class="row">
+            <div>
+              <h3>St Mark's Catholic School</h3>
+              <p class="role mono">A Level and GCSE</p>
+              <ul>
+                <li>A Level: Mathematics A* (AEA Merit), Physics A, Computer Science A (99% project)</li>
+                <li>GCSE: Seven grades 9 to 7, including 9 in Mathematics, Science and English</li>
+              </ul>
+            </div>
+            <span class="when mono">Jun 2022 – Aug 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap grid">
+      <div class="label mono"><b>03</b>About</div>
+      <div>
+        <h2>About me</h2>
+        <p class="sub">Maths, software, and building things.</p>
+        <div class="two">
+          <div>
+            <p>I'm studying Mathematics with Computing at Queen Mary University of London, and I'm self-studying A Level Further Mathematics alongside Year 1, with exams in May 2027.</p>
+            <p>I also co-founded Bright Revise Tuition, which gives free tutoring to students eligible for Free School Meals.</p>
+          </div>
+          <dl class="kv">
+            <div><dt class="mono">Course</dt><dd>BSc Mathematics with Computing</dd></div>
+            <div><dt class="mono">University</dt><dd>Queen Mary University of London</dd></div>
+            <div><dt class="mono">Years</dt><dd>Sep 2026 to Jun 2029</dd></div>
+            <div><dt class="mono">Base</dt><dd>London, UK</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="wrap grid">
+      <div class="label mono"><b>04</b>Skills</div>
+      <div>
+        <h2>Skills</h2>
+        <p class="sub">What I work with.</p>
+        <div class="two">
+          <div>
+            <p class="kv-title mono">Technical</p>
+            <dl class="kv">
+              <div><dt class="mono">Languages</dt><dd>Python, Go, C++, SQL, HTML</dd></div>
+              <div><dt class="mono">Tools</dt><dd>Git, GitHub Actions, Docker, Unreal Engine</dd></div>
+              <div><dt class="mono">Practices</dt><dd>Test-driven development, CI/CD</dd></div>
+            </dl>
+          </div>
+          <div>
+            <p class="kv-title mono">Spoken</p>
+            <dl class="kv">
+              <div><dt class="mono">English</dt><dd>C2 (85/90, Pearson Test of English)</dd></div>
+              <div><dt class="mono">Tamil</dt><dd>Native</dd></div>
+              <div><dt class="mono">Spanish</dt><dd>A1, learning</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap grid">
+      <div class="label mono"><b>05</b>Contact</div>
+      <div class="card contact">
+        <h2>Get in touch</h2>
+        <p class="lead">I'm looking for internships and insight programmes. Email is the best way to reach me.</p>
+        <a class="btn" href="mailto:johannssatheeshuk@gmail.com">Email me →</a>
+        <div class="meta mono">
+          <a href="mailto:johannssatheeshuk@gmail.com">johannssatheeshuk@gmail.com</a>
+          <a href="https://www.linkedin.com/in/johannssatheesh/">LinkedIn</a>
+          <a href="https://github.com/JohannsSatheesh">GitHub</a>
+          <span>London, UK</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="mono">
+  <div class="wrap">
+    <span>© 2026 Johanns Satheesh</span>
+    <span><a href="https://www.linkedin.com/in/johannssatheesh/">LinkedIn</a><a href="https://github.com/JohannsSatheesh">GitHub</a><a href="mailto:johannssatheeshuk@gmail.com">Email</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('toggle').addEventListener('click', function () {
+    var root = document.documentElement;
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark'
+             : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  });
+</script>
+</body>
+</html>
